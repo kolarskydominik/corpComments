@@ -1,6 +1,6 @@
-import FeedbackList from './FeedbackList';
+import FeedbackList from '../feedback/FeedbackList';
 import Header from './Header';
-import { FeedbackItemType } from './lib/types';
+import { FeedbackItemType } from '../../lib/types';
 
 type ContainerProps = {
   feedbackItems: FeedbackItemType[];

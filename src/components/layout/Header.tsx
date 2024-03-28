@@ -1,7 +1,7 @@
-import FeedbackForm from './FeedbackForm';
-import Logo from './Logo';
-import PageHeading from './PageHeading';
-import Pattern from './Pattern';
+import FeedbackForm from '../feedback/FeedbackForm';
+import Logo from '../ui/Logo';
+import PageHeading from '../ui/PageHeading';
+import Pattern from '../ui/Pattern';
 
 type HeaderProps = {
   onAddFeedbackToList: (text: string) => void;
