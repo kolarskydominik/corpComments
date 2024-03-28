@@ -9,31 +9,31 @@ export default function FeedbackList() {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch(
-      'https://bytegrad.com/course-assets/projects/corpcoment/api/feedbacks'
-    )
-      .then((res) => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch(
+          'https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks'
+        );
         if (!res.ok) {
           throw Error();
         }
-        return res.json();
-      })
-      .then((data) => {
+        const data = await res.json();
         setFeedbackItems(data.feedbacks);
-      })
-      .catch(() => {
+      } catch (error) {
         setErrorMessage('Something went wrong.');
-      })
-      .finally(() => {
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
     <ol className="feedback-list">
-      {isLoading ? <Spinner /> : null}
-      {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
+      {isLoading && <Spinner />}
+      {errorMessage && <ErrorMessage message={errorMessage} />}
       {feedbackItems.map((feedbackItem, index) => (
         <FeedbackItem key={index} feedbackItem={feedbackItem} />
       ))}
